@@ -16,7 +16,6 @@ public:
 	std::string get_last_positional();
 	std::string get_input();
 	std::string get_output();
-	std::string get_special_char();
 	bool contains(std::string optionflag);
 	
 private:
