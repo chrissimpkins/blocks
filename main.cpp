@@ -7,7 +7,7 @@
 #define APPLICATION string("Blocks")
 #define COPYRIGHT string("Copyright 2013 Christopher Simpkins")
 #define LICENSE string("MIT License")
-#define TAGLINE string("- a text templating engine")
+#define TAGLINE string("- a text file templating engine")
 #define GITHUB_SRC string("https://github.com/chrissimpkins/blocks")
 
 // Standard library headers
@@ -35,8 +35,13 @@ using std::string;
 using std::vector;
 using std::system;
 
+/******************************************
+*  Good day, I'm main()
+*******************************************/
 
+int main(int argc, char const *argv[]) {
 
+} //end main
 
 /******************************************
 *  Convert the CL character array to vector
