@@ -1,19 +1,19 @@
 COMPILER = clang++
 CXXFLAGS = -std=c++11 -stdlib=libc++ -Wall -g
 OPTIMIZATION = -O3
-OBJECTS = main.o opts.o io.o 
+OBJECTS = main.o opts.o io.o
 
 INSTALL_PATH?=/usr/local
 
 all: blocks
 
-main.o: main.cpp opts.cpp io.cpp
+main.o: main.cpp opts.cpp io.cpp print.h
 	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} -c main.cpp
 
-io.o: io.cpp
+io.o: io.cpp print.h
 	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} -c io.cpp
 
-opts.o: opts.cpp
+opts.o: opts.cpp print.h
 	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} -c opts.cpp
 
 
