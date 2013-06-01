@@ -1,4 +1,4 @@
-/* opts.h 
+/* opts.h
 *  Copyright 2013 Christopher Simpkins.  MIT License
 */
 
@@ -17,7 +17,7 @@ public:
 	std::string get_input();
 	std::string get_output();
 	bool contains(std::string optionflag);
-	
+
 private:
 	//class variables
 	int argc;

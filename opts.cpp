@@ -1,4 +1,4 @@
-/* opts.cpp 
+/* opts.cpp
 *  Copyright 2013 Christopher Simpkins.  MIT License
 */
 

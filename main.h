@@ -1,4 +1,4 @@
-/* main.h 
+/* main.h
 *  Copyright 2013 Christopher Simpkins.  MIT License
 */
 #ifndef MAIN_H
