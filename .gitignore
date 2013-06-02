@@ -12,3 +12,6 @@
 *.la
 *.a
 blocks
+bottom.txt
+middle.txt
+top.txt
