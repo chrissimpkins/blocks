@@ -15,6 +15,7 @@ using std::runtime_error;
 // returns a vector of all options entered on the command line
 vector<string> Options::get_options() {
 	vector<string> return_opts;
+	//start at i = 2 because first two positions represent commands
 	for (int i = 2; i < argc; ++i){
 		if (!optionvec[i].empty()){
 			string oi = optionvec[i];
@@ -78,6 +79,22 @@ string Options::get_last_positional(){
 	//return the last argument on the command line
 	string laststring = *(iter_end - 1);
 	return laststring;
+}
+
+//fills a vector (passed by reference) with the positional arguments from position begin() + 2 (i.e. after blocks <command>) to first option or end of command
+int Options::fill_arg_vector(vector<string>& fill_vector){
+	for (auto iter = optionvec.begin() + 2; iter < optionvec.end(); ++iter){
+		char c = (*iter)[0];
+		switch(c) {
+			// if it is a short option (starts with '-') or long option (starts with '-')
+			case '-':
+				return 1;  //then break out of the vector fill loop and return because done filling the vector
+			default:
+				fill_vector.push_back(*iter);  //fill the vector with the string arguments up until the first option
+				break;
+		}
+	}
+	return 1;
 }
 
 // returns boolean for check on optionflag inclusion in the options vector (which is vector of each string submitted by user)
