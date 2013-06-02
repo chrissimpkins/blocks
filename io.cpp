@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
+#include <iterator>
 
 #include "io.h"
 #include "print.h"
@@ -19,14 +21,12 @@ using std::flush;
 using std::runtime_error;
 using std::wifstream;
 
-#define DEFAULT_OUTPATH "blocks.txt"
-
 /**********************************
 *  READ FUNCTIONS
 **********************************/
 
 //public function to read entire string from a file
-wstring& IO::read_file(){
+wstring IO::read_file(){
 	//if the path variable is assigned in constructor
 	if (!path.empty()){
 		try{
@@ -35,9 +35,8 @@ wstring& IO::read_file(){
 				// define the input string from the calling function with the reference that was passed in
 				wifstream& inr = infile;
 				get_string(inr);
-				wstring& isr = inputstring;
 				infile.close();
-				return isr;
+				return inputstring;
 			}
 			else{
 				print_error("Unable to open the input file " + path);
@@ -78,15 +77,35 @@ wstring& IO::read_file(){
 }
 
 //private function to get the entire string from a text file
-void IO::get_string(wifstream& inputstream){
-	while (inputstream.good()) {
-		//load the input stream from the file into a string stream
-		int next = inputstream.get();
-		if (next == EOF){
-			break;
-		}
-		//implicit conversion of the int char to a string
-		inputstring += next;
+void IO::get_string(wifstream& is){
+	if (is.good()){
+		//get length of file
+		//is.seekg(0, is.end);
+		//size_t length = is.tellg();
+		//is.seekg(0, is.beg);
+		//allocate memory for strings
+		//wchar_t* buffer = new wchar_t [length];
+		//if (buffer) {
+			// read data as a block into buffer
+			wstring tempstring;
+			while(getline(is, tempstring)){
+				tempstring += '\n';
+				inputstring += tempstring;
+			}
+			//remove the last newline char that we added to the string because at end of file
+			inputstring.erase(inputstring.end()-1);
+			//inputstring = buffer;
+			is.close();
+			//delete[] buffer;
+		//}
+		//else {
+		//	print_error("Unable to allocate memory for input string");
+		//	exit(EXIT_FAILURE);
+		//}
+	}
+	else{
+		print_error("Unable to open input file path");
+		exit(EXIT_FAILURE);
 	}
 }
 

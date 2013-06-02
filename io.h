@@ -16,7 +16,7 @@ class IO {
 		IO(std::string inpath, std::string outpath) : ipath(inpath), opath(outpath) { }
 
 		//functions
-		std::wstring& read_file();
+		std::wstring read_file();
 		void write_file(std::wstring& outstring);
 		void write_stdout(std::wstring& outstring);
 
@@ -26,7 +26,7 @@ class IO {
 		std::string ipath; //in filepath
 		std::string opath;  //out filepath
 		std::wstring inputstring; //defined with the appropriate string from the file, returned as reference from public functions
-		std::wstring tempstring; //temporary string to hold parts of the text from file
+		//std::wstring tempstring; //temporary string to hold parts of the text from file
 		//functions
 		void get_string(std::wifstream& filestream);
 		void write_filestring(std::wofstream& filestream, std::wstring& outstring);

@@ -3,7 +3,7 @@
 */
 
 // Constant definitions
-#define VERSION string("0.1.3")
+#define VERSION string("0.1.4")
 #define APPLICATION string("Blocks")
 #define COPYRIGHT string("Copyright 2013 Christopher Simpkins")
 #define LICENSE string("MIT License")
@@ -13,14 +13,12 @@
 // Standard library headers
 #include <iostream>
 #include <string>
-#include <regex>
 #include <cstdlib>
-#include <string>
 #include <vector>
-#include <fstream>
 #include <iterator>
 
 #include "main.h"
+#include "filemaker.h"
 #include "io.h"
 #include "opts.h"
 #include "print.h"
@@ -29,7 +27,6 @@
 using std::wstring;
 using std::string;
 using std::vector;
-using std::system;
 
 /******************************************
 *  G'day, I'm main()
@@ -65,9 +62,19 @@ int main(int argc, char const *argv[]) {
 				return 1;
 			}
 			else {
-				// TO DO: get the files that are going to be used for the make
+				FileMaker fm = FileMaker(argc, clvr);
+				fm.make_write_outfile_string();
 			}
 		} // end MAKE
+		else if (cmd == "test"){
+			Options opt = Options(argc, clvr);
+			vector<string> testvec;
+			vector<string>& testvec_r = testvec;
+			opt.fill_arg_vector(testvec_r);
+			for (auto s : testvec){
+				print(s);
+			}
+		}
 	}
 
 } //end main
