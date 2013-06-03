@@ -19,8 +19,8 @@ private:
 	int argc;                          //number of arguments on the command line
 	const std::vector<std::string>& cmdvec; //holds the command line vector
 	//functions
-	void write_file(std::wstring&);
-	void write_stdout(std::wstring&);
+	inline void write_file(std::wstring&, std::string&);
+	inline void write_stdout(std::wstring&);
 };
 
 #endif

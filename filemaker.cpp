@@ -12,6 +12,8 @@
 #include "io.h"
 #include "cstdlib"
 
+#define DEFAULT_OUTPATH string("blocks.txt")  //default out filepath if not specified by user
+
 using std::string;
 using std::wstring;
 using std::vector;
@@ -32,15 +34,31 @@ void FileMaker::make_write_outfile_string() {
 		outstring += tempstring;
 	}
 	wstring& outstring_r = outstring;
-	write_stdout(outstring_r);
+	// OPTION s : write to standard out
+	if (opt.contains("-s") || opt.contains("--stdout")){
+		write_stdout(outstring_r);
+	}
+	// OPTION o : write to file
+	else if (opt.contains("-o")){
+		string outpath = opt.get_output();
+		string& out_r = outpath;
+		write_file(outstring_r, out_r);
+	}
+	// DEFAULT FILE WRITE
+	else {
+		//write to default filepath
+		string outpath = DEFAULT_OUTPATH;
+		string& out_r = outpath;
+		write_file(outstring_r, out_r);
+	}
 
-	//TO DO: unable to obtain strings from multiple files - fix
 }
 
-void FileMaker::write_file(wstring& outstring_ref) {
-
+inline void FileMaker::write_file(wstring& outstring_ref, string& outpath) {
+	IO out = IO(outpath);
+	out.write_file(outstring_ref);
 }
 
-void FileMaker::write_stdout(wstring& outstring_ref) {
+inline void FileMaker::write_stdout(wstring& outstring_ref) {
 	flush(outstring_ref);
 }

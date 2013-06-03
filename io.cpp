@@ -87,13 +87,32 @@ void IO::get_string(wifstream& is){
 		//wchar_t* buffer = new wchar_t [length];
 		//if (buffer) {
 			// read data as a block into buffer
+
+
 			wstring tempstring;
 			while(getline(is, tempstring)){
-				tempstring += '\n';
+				if (is.eof()){
+					print("Yep, hit EOF");
+					//if it is the end of the file, check the char at the last position in the stream
+					//if it is a newline char, replace it, otherwise done
+					is.seekg(0, is.end);
+					long end = is.tellg();
+					long last_char = end - 1;
+					is.seekg(last_char);
+					wchar_t c;
+					wchar_t& c_r = c;
+					if ((wchar_t)is.get(c_r) == '\n'){
+						tempstring += '\n';
+					}
+					std::cout << c << std::endl;
+				}
+				else{
+					//add the newline character that was removed by getline call
+					tempstring += '\n';
+				}
+				//concatenate temp string with the existing input string
 				inputstring += tempstring;
 			}
-			//remove the last newline char that we added to the string because at end of file
-			inputstring.erase(inputstring.end()-1);
 			//inputstring = buffer;
 			is.close();
 			//delete[] buffer;
