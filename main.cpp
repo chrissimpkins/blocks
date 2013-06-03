@@ -3,7 +3,7 @@
 */
 
 // Constant definitions
-#define VERSION string("0.1.4")
+#define VERSION string("0.1.5")
 #define APPLICATION string("Blocks")
 #define COPYRIGHT string("Copyright 2013 Christopher Simpkins")
 #define LICENSE string("MIT License")
