@@ -7,7 +7,7 @@
 #define APPLICATION string("Blocks")
 #define COPYRIGHT string("Copyright 2013 Christopher Simpkins")
 #define LICENSE string("MIT License")
-#define TAGLINE string("- a text file template engine")
+#define TAGLINE string("- a text file template jet pack")
 #define GITHUB_SRC string("https://github.com/chrissimpkins/blocks")
 
 // Standard library headers
