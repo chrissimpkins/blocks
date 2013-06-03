@@ -79,48 +79,31 @@ wstring IO::read_file(){
 //private function to get the entire string from a text file
 void IO::get_string(wifstream& is){
 	if (is.good()){
-		//get length of file
-		//is.seekg(0, is.end);
-		//size_t length = is.tellg();
-		//is.seekg(0, is.beg);
-		//allocate memory for strings
-		//wchar_t* buffer = new wchar_t [length];
-		//if (buffer) {
-			// read data as a block into buffer
-
-
-			wstring tempstring;
-			while(getline(is, tempstring)){
-				if (is.eof()){
-					print("Yep, hit EOF");
-					//if it is the end of the file, check the char at the last position in the stream
-					//if it is a newline char, replace it, otherwise done
-					is.seekg(0, is.end);
-					long end = is.tellg();
-					long last_char = end - 1;
-					is.seekg(last_char);
-					wchar_t c;
-					wchar_t& c_r = c;
-					if ((wchar_t)is.get(c_r) == '\n'){
-						tempstring += '\n';
-					}
-					std::cout << c << std::endl;
-				}
-				else{
-					//add the newline character that was removed by getline call
+		wstring tempstring;
+		while(getline(is, tempstring)){
+			if (is.eof()){
+				//if it is the end of the file, check the char at the last position in the stream
+				//if it is a newline char, replace it, otherwise done
+				is.seekg(0, is.end);
+				long end = is.tellg();
+				long last_char = end - 1;
+				is.seekg(last_char);
+				wchar_t c;
+				wchar_t& c_r = c;
+				if ((wchar_t)is.get(c_r) == '\n'){
 					tempstring += '\n';
 				}
-				//concatenate temp string with the existing input string
-				inputstring += tempstring;
+				std::cout << c << std::endl;
 			}
-			//inputstring = buffer;
-			is.close();
-			//delete[] buffer;
-		//}
-		//else {
-		//	print_error("Unable to allocate memory for input string");
-		//	exit(EXIT_FAILURE);
-		//}
+			else{
+				//add the newline character that was removed by getline call
+				tempstring += '\n';
+			}
+			//concatenate temp string with the existing input string
+			inputstring += tempstring;
+		}
+		is.close();
+
 	}
 	else{
 		print_error("Unable to open input file path");
