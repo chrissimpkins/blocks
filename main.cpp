@@ -27,6 +27,19 @@
 using std::wstring;
 using std::string;
 using std::vector;
+using std::cout;
+using std::wcout;
+using std::endl;
+
+/*
+*  Options:
+*		-o : specify out file path (filemaker.cpp)
+*		-s : write to standard out (filemaker.cpp)
+*
+*
+*  Defaults:
+*		Out file path : 'blocks.txt' (specified in filemaker.cpp define)
+*/
 
 /******************************************
 *  G'day, I'm main()
@@ -66,7 +79,16 @@ int main(int argc, char const *argv[]) {
 				fm.make_write_outfile_string();
 			}
 		} // end MAKE
-		else if (cmd == "test"){
+		// READ ---------------------------------------------------------
+		else if (cmd == "read") {
+			Options opt = Options(argc, clvr);
+			string inpath = opt.get_last_positional();
+			IO io = IO(inpath);
+			wstring infile = io.read_file();
+			cout << "The text block '" << inpath << "':" << endl << endl;
+			wcout << infile << endl;
+		}
+ 		else if (cmd == "test"){
 			Options opt = Options(argc, clvr);
 			vector<string> testvec;
 			vector<string>& testvec_r = testvec;
@@ -106,13 +128,17 @@ inline void show_help() {
 	print(" ");
 	// SYNTAX HELP
 	print("Usage:");
-	print("\tblocks <command> [-shortoption] [--longoption] <last positional arg>");
+	print("\tblocks <command> <argument(s)> [-shortoption] [--longoption]");
 	// HELP INFO
 	print(" ");
 	print("Help:");
 	print("\tblocks <command> [-h | --help]");
 	print(" ");
 	print("Get help for any command with the -h or --help options.");
+	print(" ");
+	print("Available Commands:");
+	print("\tmake : compile a text file from multiple text block files");
+	print("\tread : display a text block in the terminal");
 }
 
 /******************************************
