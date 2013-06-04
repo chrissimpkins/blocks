@@ -88,15 +88,6 @@ int main(int argc, char const *argv[]) {
 			cout << "The text block '" << inpath << "':" << endl << endl;
 			wcout << infile << endl;
 		}
- 		else if (cmd == "test"){
-			Options opt = Options(argc, clvr);
-			vector<string> testvec;
-			vector<string>& testvec_r = testvec;
-			opt.fill_arg_vector(testvec_r);
-			for (auto s : testvec){
-				print(s);
-			}
-		}
 	}
 
 } //end main
