@@ -93,7 +93,6 @@ void IO::get_string(wifstream& is){
 				if ((wchar_t)is.get(c_r) == '\n'){
 					tempstring += '\n';
 				}
-				std::cout << c << std::endl;
 			}
 			else{
 				//add the newline character that was removed by getline call

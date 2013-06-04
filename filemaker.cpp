@@ -18,7 +18,6 @@ using std::string;
 using std::wstring;
 using std::vector;
 
-
 void FileMaker::make_write_outfile_string() {
 	vector<string> file_vec;
 	vector<string>& filevec_r = file_vec;
