@@ -7,7 +7,7 @@
 #define APPLICATION string("Blocks")
 #define COPYRIGHT string("Copyright 2013 Christopher Simpkins")
 #define LICENSE string("MIT License")
-#define TAGLINE string("- a text file template jet pack")
+#define TAGLINE string("- a text file template compiler")
 #define GITHUB_SRC string("https://github.com/chrissimpkins/blocks")
 
 // Standard library headers
@@ -123,17 +123,14 @@ inline void show_help() {
 	print(" ");
 	// SYNTAX HELP
 	print("Usage:");
-	print("\tblocks <command> <argument(s)> [-shortoption] [--longoption]");
+	print("\tblocks <command> <argument(s)> [-shortoption] [--longoption]\n");
 	// HELP INFO
-	print(" ");
 	print("Help:");
-	print("\tblocks <command> [-h | --help]");
-	print(" ");
-	print("Get help for any command with the -h or --help options.");
-	print(" ");
+	print("\tblocks <command> [-h | --help]\n");
+	print("Get help for any command with the -h or --help options.\n");
 	print("Available Commands:");
-	print("\tmake : compile a text file from multiple text block files");
-	print("\tread : stream a text block to standard output");
+	print("\tmake : compile a text file from multiple text block templates");
+	print("\tread : stream a text block to standard output\n");
 }
 
 /******************************************
