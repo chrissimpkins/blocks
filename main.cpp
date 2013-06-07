@@ -88,6 +88,10 @@ int main(int argc, char const *argv[]) {
 			cout << "The text block '" << inpath << "':" << endl << endl;
 			wcout << infile << endl;
 		}
+		else{
+			print_error("The blocks command that you submitted was not recognized.  Type 'blocks help' to view the available commands.\n");
+			show_usage();
+		}
 	}
 
 } //end main
@@ -105,7 +109,7 @@ inline vector<string> create_CL_vector(int argc, char const *argv[]){
 }
 
 /******************************************
-*  Terminal view for help
+*  Display help
 *******************************************/
 
 inline void show_help() {
@@ -129,11 +133,11 @@ inline void show_help() {
 	print(" ");
 	print("Available Commands:");
 	print("\tmake : compile a text file from multiple text block files");
-	print("\tread : display a text block in the terminal");
+	print("\tread : stream a text block to standard output");
 }
 
 /******************************************
-*  Terminal view for usage
+*  Display usage
 *******************************************/
 
 inline void show_usage() {
@@ -142,7 +146,7 @@ inline void show_usage() {
 }
 
 /******************************************
-*  Terminal view for version
+*  Display version
 *******************************************/
 
 inline void show_version(){
