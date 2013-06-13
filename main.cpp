@@ -22,6 +22,7 @@
 #include "io.h"
 #include "opts.h"
 #include "print.h"
+#include "pyc.h"
 
 // Standard library namespace
 using std::wstring;
@@ -78,7 +79,7 @@ int main(int argc, char const *argv[]) {
 				FileMaker fm = FileMaker(argc, clvr);
 				fm.make_write_outfile_string();
 			}
-		} // end MAKE
+		}
 		// READ ---------------------------------------------------------
 		else if (cmd == "read") {
 			Options opt = Options(argc, clvr);
@@ -87,6 +88,17 @@ int main(int argc, char const *argv[]) {
 			wstring infile = io.read_file();
 			cout << "The text block '" << inpath << "':" << endl << endl;
 			wcout << infile << endl;
+		}
+		else if (cmd == "test") {
+			PyObject* compress_func;
+			python_Initialize();
+			compress_func = get_PyCallable_From_PyModule("lib.py.network", "print_html");
+			const char* filepath = "http://www.google.com";
+			int i = python_Call(compress_func, "(s)", filepath);
+			if (i == 0)
+				cout << "completed compression" << endl;
+			Py_DECREF(compress_func);
+			python_Finalize();
 		}
 		else{
 			print_error("The blocks command that you submitted was not recognized.  Type 'blocks help' to view the available commands.\n");
