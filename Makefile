@@ -1,5 +1,5 @@
 COMPILER = clang++
-CXXFLAGS = -std=c++11 -stdlib=libc++ -Wall -g
+CXXFLAGS = -std=c++11 -stdlib=libc++ -Wall -g `python-config --cflags`
 OPTIMIZATION = -O3
 OBJECTS = main.o filemaker.o io.o opts.o
 
@@ -7,7 +7,7 @@ INSTALL_PATH?=/usr/local
 
 all: blocks
 
-main.o: main.cpp main.h print.h
+main.o: main.cpp main.h print.h pyc.h
 	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} -c main.cpp
 
 filemaker.o: filemaker.cpp filemaker.h print.h
@@ -20,7 +20,7 @@ opts.o: opts.cpp opts.h print.h
 	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} -c opts.cpp
 
 blocks: ${OBJECTS}
-	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} ${OBJECTS} -o blocks
+	${COMPILER} ${CXXFLAGS} ${OPTIMIZATION} ${OBJECTS} -o blocks `python-config --ldflags`
 
 install: blocks
 	cp -f blocks ${INSTALL_PATH}/bin/blocks
