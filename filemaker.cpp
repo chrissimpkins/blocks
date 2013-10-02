@@ -12,7 +12,7 @@
 #include "io.h"
 #include "cstdlib"
 
-#define DEFAULT_OUTPATH string("blocks.txt")  //default out filepath if not specified by user
+#define DEFAULT_OUTPATH string("blocks.txt")  //default out filepath if not specified by user is blocks.txt file
 
 using std::string;
 using std::wstring;
