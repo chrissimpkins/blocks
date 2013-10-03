@@ -81,7 +81,7 @@ string Options::get_last_positional(){
 	return laststring;
 }
 
-//fills a vector (passed by reference) with the positional arguments from position begin() + 2 (i.e. after blocks <command>) to first option or end of command
+//fills a vector with the positional arguments from position begin() + 2 (i.e. after blocks <command>) to first option or end of command
 int Options::fill_arg_vector(vector<string>& fill_vector){
 	for (auto iter = optionvec.begin() + 2; iter < optionvec.end(); ++iter){
 		char c = (*iter)[0];
