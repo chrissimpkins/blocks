@@ -17,6 +17,7 @@
 #include <vector>
 #include <iterator>
 
+// Blocks headers
 #include "main.h"
 #include "filemaker.h"
 #include "io.h"
