@@ -12,7 +12,7 @@ using std::string;
 using std::vector;
 using std::runtime_error;
 
-// returns a vector of all options entered on the CL
+// returns a vector of all options entered on the command line
 vector<string> Options::get_options() {
 	vector<string> return_opts;
 	//start at i = 2 because first two positions represent commands
